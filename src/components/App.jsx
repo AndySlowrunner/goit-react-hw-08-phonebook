@@ -1,29 +1,50 @@
-import { StyledDiv } from "./ContactForm/StyledForm";
-import { ContactForm } from "./ContactForm/ContactForm";
-import { ContactList } from "./ContactList/ContactList";
-import { Filter } from "./ContactFilter/ContactFilter";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchContacts } from "redux/operations";
-import { selectError, selectIsLoading } from "redux/selectors";
+import { lazy, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { useAuth } from "./hook/useAuth";
+import { refreshUser } from "redux/auth/operationst";
+import { Route, Routes } from "react-router-dom";
+import { SharedLayout } from "./SharedLayout";
+import { PrivateRoute } from "./PrivateRoute";
+import { RestrictedRoute } from "./RestrictedRoute";
+
+const HomePage = lazy(() => import('../pages/Home'));
+const RegisterPage = lazy(() => import('../pages/Register'));
+const LoginPage = lazy(() => import('../pages/Login'));
+const ContactsPage = lazy(() => import('../pages/Contacts'));
 
 export const App = () => {
-    const dispatch = useDispatch();
-    const isLoading = useSelector(selectIsLoading);
-    const error = useSelector(selectError);
+  const dispatch = useDispatch();
+  const { isRefreshing } = useAuth();
 
-    useEffect(() => {
-        dispatch(fetchContacts())
-    }, [dispatch]);
-    
-    return (
-        <StyledDiv>
-            <h1>Phonebook</h1>
-            <ContactForm/>
-            <h2>Contacts</h2>
-            <Filter />
-            {isLoading && !error && <b>Request in progress...</b>}
-            <ContactList/>
-        </StyledDiv>
-    );
- };
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
+
+  return isRefreshing ? (
+    <b>Refreshing user...</b>
+  ) : (
+    <Routes>
+      <Route path="/" element={<SharedLayout />}>
+        <Route index element={<HomePage />} />
+        <Route
+          path="/register"
+          element={
+            <RestrictedRoute redirectTo="/contacts" component={<RegisterPage />} />
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <RestrictedRoute redirectTo="/contacts" component={<LoginPage />} />
+          }
+        />
+        <Route
+          path="/contacts"
+          element={
+            <PrivateRoute redirectTo="/login" component={<ContactsPage />} />
+          }
+        />
+      </Route>
+    </Routes>
+  );
+};

@@ -1,5 +1,5 @@
-export const selectIsLoggedIn = true;
-export const selectIsRefreshing = true;
+export const selectIsLoggedIn = false;
+export const selectIsRefreshing = false;
 export const selectUser = {
     name: 'Name',
 };
