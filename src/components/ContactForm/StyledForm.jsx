@@ -2,19 +2,26 @@ import styled from 'styled-components';
 import { Form } from "formik";
 
 export const StyledForm = styled(Form)`
-    width: 164px;
-    padding: 8px 124px 8px 8px;
+    margin: 0px auto;
+    width: 320px;
 
     display: flex;
     flex-direction: column;
-    border: 2px solid black;
     gap: 8px;
 `;
 
 export const ButtomStyle = styled.button`
-    width: 90px;
+    width: 86px;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
 `;
 
 export const StyledDiv = styled.div`
-    margin-left: 10px;
+    >h3{
+        display: flex;
+        justify-content: center;
+        margin-top: 32px;
+        margin-bottom: 8px;
+    }
 `;
