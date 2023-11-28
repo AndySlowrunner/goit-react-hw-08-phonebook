@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkreact_homework_template=self.webpackChunkreact_homework_template||[]).push([[415],{415:(e,t,n)=>{n.r(t),n.d(t,{default:()=>i});var c=n(184);const r={container:{minHeight:"calc(100vh - 50px)",display:"flex",alignItems:"center",justifyContent:"center"},title:{fontWeight:500,fontSize:48,textAlign:"center"}};function i(){return(0,c.jsx)("div",{style:r.container,children:(0,c.jsx)("h1",{style:r.title,children:"Let's create your contact book!"})})}}}]);
+//# sourceMappingURL=415.9768ca48.chunk.js.map
