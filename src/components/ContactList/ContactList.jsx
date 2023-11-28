@@ -9,9 +9,9 @@ export const ContactList = () => {
 
     return (
         <StyledUl>
-            {contacts.map(({name, phone, id}) =>
+            {contacts.map(({name, number, id}) =>
                 <StyledList key={id}>
-                    <p>{name}:{' ' + phone}</p>
+                    <p>{name}:{' ' + number}</p>
                     <button onClick={() => {
                         dispatch(deleteContact(id));
                     }}>Delete</button>

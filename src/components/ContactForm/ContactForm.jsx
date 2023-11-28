@@ -7,7 +7,7 @@ import { addContact } from "redux/operations";
 
 const schema = yup.object().shape({
     name: yup.string().required(),
-    phone: yup.string().required(),
+    number: yup.string().required(),
 });
 
 export const ContactForm = () => {
@@ -30,7 +30,7 @@ export const ContactForm = () => {
         <Formik
             initialValues={{
                 name: '',
-                phone: '',
+                number: '',
             }}
             onSubmit={handleSubmit}
             validationSchema={schema}
@@ -47,7 +47,7 @@ export const ContactForm = () => {
                 <label>Number</label>
                 <Field
                     type="tel"
-                    name="phone"
+                    name="number"
                     pattern="\+?\d{1,4}?[ .\-\s]?\(?\d{1,3}?\)?[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,9}"
                     title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
                     required

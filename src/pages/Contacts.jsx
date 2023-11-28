@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchContacts } from "redux/operations";
 import { selectError, selectIsLoading } from "redux/selectors";
 
-export const Contacts = () => {
+export default function Contacts() {
     const dispatch = useDispatch();
     const isLoading = useSelector(selectIsLoading);
     const error = useSelector(selectError);
